@@ -10,30 +10,30 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <!-- Header -->
-    <div style="background-color: lightblue; width: 1000px; height: 50px;">
-        <asp:ContentPlaceHolder id="cphHeader" runat="server">
-        This is the header.
-        </asp:ContentPlaceHolder>
-    </div>
-    <!-- Side Bar -->
-    <div style="background-color: lightcoral; width: 200px; height: 600px; float: left;">
-        <asp:ContentPlaceHolder id="cphSideBar" runat="server">
-        This is the side bar.
-        </asp:ContentPlaceHolder>
-    </div>
-    <!-- Main Content -->
-    <div style="background-color: lightyellow; width: 800px; height: 600px;">
-        <asp:ContentPlaceHolder id="cphMain" runat="server">
-        This is the main content.
-        </asp:ContentPlaceHolder>
-    </div>
-    <!-- Footer -->
-    <div style="background-color: lightgreen; width: 1000px; height: 50px; clear: both;">
-        <asp:ContentPlaceHolder id="cphFooter" runat="server">
-        This is the footer.
-        </asp:ContentPlaceHolder>
-    </div>
+        <!-- Header -->
+        <div style="background-color: lightblue; width: 1200px; height: 50px;">
+            <asp:ContentPlaceHolder id="cphHeader" runat="server">
+            This is the header.
+            </asp:ContentPlaceHolder>
+        </div>
+        <!-- Side Bar -->
+        <div style="background-color: lightcoral; width: 200px; height: 850px; float: left;">
+            <asp:ContentPlaceHolder id="cphSideBar" runat="server">
+            This is the side bar.
+            </asp:ContentPlaceHolder>
+        </div>
+        <!-- Main Content -->
+        <div style="background-color: lightyellow; width: 980px; height: 830px;  padding: 10px 10px 10px 10px; float: left;">
+            <asp:ContentPlaceHolder id="cphMain" runat="server">
+            This is the main content.
+            </asp:ContentPlaceHolder>
+        </div>
+        <!-- Footer -->
+        <div style="background-color: lightgreen; width: 1200px; height: 50px; clear: both;">
+            <asp:ContentPlaceHolder id="cphFooter" runat="server">
+            This is the footer.
+            </asp:ContentPlaceHolder>
+        </div>
     </form>
 </body>
 </html>
