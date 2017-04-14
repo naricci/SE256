@@ -17,13 +17,13 @@
             </asp:ContentPlaceHolder>
         </div>
         <!-- Side Bar -->
-        <div style="background-color: lightcoral; width: 200px; height: 850px; float: left;">
+        <div style="background-color: lightcoral; width: 200px; height: 750px; float: left;">
             <asp:ContentPlaceHolder id="cphSideBar" runat="server">
             This is the side bar.
             </asp:ContentPlaceHolder>
         </div>
         <!-- Main Content -->
-        <div style="background-color: lightyellow; width: 980px; height: 830px;  padding: 10px 10px 10px 10px; float: left;">
+        <div style="background-color: lightyellow; width: 980px; height: 730px;  padding: 10px 10px 10px 10px; float: left;">
             <asp:ContentPlaceHolder id="cphMain" runat="server">
             This is the main content.
             </asp:ContentPlaceHolder>
