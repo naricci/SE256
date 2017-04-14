@@ -12,7 +12,7 @@
         <div>
             <asp:label id="lblSalutation" runat="server" text="Salutation" Font-Bold="True"></asp:label>&nbsp;&nbsp;
             <!-- Radio Button List -->
-            <asp:RadioButtonList ID="rblSalutation" runat="server" BorderStyle="Solid" Height="20px" RepeatDirection="Horizontal" Width="300px" style="display: inline;" BorderColor="#669999">
+            <asp:RadioButtonList ID="rblSalutation" runat="server" BorderStyle="None" Height="20px" RepeatDirection="Horizontal" Width="300px" style="display: inline;" BorderColor="#669999">
                 <asp:ListItem>Mr.</asp:ListItem>
                 <asp:ListItem>Mrs.</asp:ListItem>
                 <asp:ListItem>Ms.</asp:ListItem>
@@ -102,28 +102,53 @@
             <div style="width: 300px; float: left;">    
                 <asp:Label ID="lblAnniversary" runat="server" Font-Bold="True" Text="Anniversary"></asp:Label>
                 <asp:Calendar ID="calAnniversary" runat="server" Height="16px" Width="16px"></asp:Calendar>
-            </div><!--/Anniversary-div-->
-            <br />
-            <br />
-        </div><!--/Calendars-div-->
+            </div><!--/Anniversary-div--> 
+            
+            <!-- Feedback Listbox div -->
+            <div style="width: 377px; float: left; height: 206px;">
+                <asp:Label ID="lblFeedback" runat="server" Font-Bold="True" Text="Feedback"></asp:Label>
+                <br />
+                <asp:ListBox ID="lbxFeedback" runat="server" Height="193px" Width="288px" style="margin-left: 0px"></asp:ListBox>
+            </div><!--/Feedback-div-->
+        </div><!--/Calendars div-->
+        <br />
 
         <!--Contact Info div -->
-        <div style="clear: both;">
+        <div style="clear: both; width: 600px;">
             <asp:Label ID="lblHomePhone" runat="server" Font-Bold="True" Text="Home Phone"></asp:Label>
                 &nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtHomePhone" runat="server"></asp:TextBox>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:CheckBox ID="chkCardWorthy" runat="server" Font-Bold="True" Text="Card Worthy?" />
             <br />
             <br />
             <asp:Label ID="lblWorkPhone" runat="server" Font-Bold="True" Text="Work Phone"></asp:Label>
                 &nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtWorkPhone" runat="server"></asp:TextBox>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="lblRelationship" runat="server" Font-Bold="True" Text="Relationship"></asp:Label>
+&nbsp;&nbsp;<!-- Relationship Drop Down List -->
+            <asp:DropDownList ID="ddlRelationship" runat="server" Width="161px">
+                <asp:ListItem>Please Choose One..</asp:ListItem>
+                <asp:ListItem>Parent</asp:ListItem>
+                <asp:ListItem>Sibling</asp:ListItem>
+                <asp:ListItem>Friend</asp:ListItem>
+                <asp:ListItem>Co-worker</asp:ListItem>
+                <asp:ListItem>Enemy</asp:ListItem>
+            </asp:DropDownList>
             <br />
             <br />
             <asp:Label ID="lblCellPhone" runat="server" Font-Bold="True" Text="Cell Phone"></asp:Label>
                 &nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtCellPhone" runat="server"></asp:TextBox>
         </div><!--/Contact-info-div-->
+        
+        <!-- Button div -->
+        <div style="width: 300px; float: right;">
+            <!-- Add/Clear Buttons -->
+            <asp:Button ID="btnClear" runat="server" Text="Clear" style="float: right;" Width="100px" OnClick="btnClear_Click" />
+            <asp:Button ID="btnAdd" runat="server" Text="Add Contact" style="float: right;" Width="100px" OnClick="btnAdd_Click" />
+        </div><!--/Button-div-->
         
     </div><!--/First-Div-->
 </asp:Content>
