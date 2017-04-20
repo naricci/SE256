@@ -5,6 +5,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style>
+        body { margin-left: auto; margin-right: auto; }
+        .nav-btn { float: right; padding-right: 10px; }
+    </style>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -15,6 +19,8 @@
             <asp:ContentPlaceHolder id="cphHeader" runat="server">
             This is the header.
             </asp:ContentPlaceHolder>
+            <asp:Label ID="lblContactMgr" runat="server" Text="CONTACT MGR" class="nav-btn"><a href="ContactMgr.aspx">CONTACT-MGR</a></asp:Label>
+            <asp:Label ID="lblHome" runat="server" Text="HOME" class="nav-btn"><a href="Default.aspx">HOME</a></asp:Label>
         </div>
         <!-- Side Bar -->
         <div style="background-color: lightcoral; width: 200px; height: 750px; float: left;">
