@@ -8,6 +8,7 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphMain" Runat="Server">
     <div>
+        <h1>Contact Manager Page.</h1>
         <!-- Salutation div -->
         <div>
             <asp:label id="lblSalutation" runat="server" text="Salutation" Font-Bold="True"></asp:label>&nbsp;&nbsp;
@@ -144,10 +145,13 @@
             <asp:TextBox ID="txtCellPhone" runat="server"></asp:TextBox>
         </div><!--/Contact-info-div-->
         
-        <!-- Button div -->
+        <!-- Buttons div -->
         <div style="width: 300px; float: right;">
-            <!-- Add/Clear Buttons -->
-            <asp:Button ID="btnClear" runat="server" Text="Clear" style="float: right;" Width="100px" OnClick="btnClear_Click" />
+            
+            <!-- Clear Form Button -->
+            <asp:Button ID="btnClear" runat="server" Text="Clear Form" style="float: right;" Width="100px" OnClick="btnClear_Click" />
+            
+            <!-- Add Contact Button -->
             <asp:Button ID="btnAdd" runat="server" Text="Add Contact" style="float: right;" Width="100px" OnClick="btnAdd_Click" />
         </div><!--/Button-div-->        
     </div><!--/First-Div-->

@@ -20,7 +20,8 @@
             This is the header.
             </asp:ContentPlaceHolder>
             <asp:Label ID="lblContactMgr" runat="server" Text="CONTACT MGR" class="nav-btn"><a href="ContactMgr.aspx">CONTACT-MGR</a></asp:Label>
-            <asp:Label ID="lblHome" runat="server" Text="HOME" class="nav-btn"><a href="Default.aspx">HOME</a></asp:Label>
+            <asp:Label ID="lblAboutUs" runat="server" Text="ABOUT US" class="nav-btn"><a href="AboutUs.aspx">ABOUT-US</a></asp:Label>
+            <asp:Label ID="lblHome" runat="server" Text="HOME" class="nav-btn"><a href="Default.aspx">HOME</a></asp:Label>   
         </div>
         <!-- Side Bar -->
         <div style="background-color: lightcoral; width: 200px; height: 750px; float: left;">
