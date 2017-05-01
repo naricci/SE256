@@ -10,7 +10,14 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Session["LoggedIn"] != null && Session["LoggedIn"].ToString() == "TRUE")
+        {
+            //do nothing...they are good
+        }
+        else
+        {
+            Response.Redirect("Default.aspx");
+        }
     }
 
     protected void btnAdd_Click(object sender, EventArgs e)
@@ -72,5 +79,14 @@ public partial class _Default : System.Web.UI.Page
 
         // Clear Feedback ListBox
         lbxFeedback.Items.Clear();
+    }
+
+    protected void btnLogOut_Click(object sender, EventArgs e)
+    {
+        // Kill Session Variable
+        Session.Abandon();
+
+        // Redirect back to Log In Page
+        Response.Redirect("/Controls/Default.aspx");
     }
 }
