@@ -22,12 +22,12 @@ public class Person
     private string workphone;
     private string cellphone;
     private string email;
-    private bool cardworthy;
+    private string cardworthy;
     private string relationship;
     private string notes;
     private string feedback = "";
-    // public Int32 Person_ID = 0;
-    public const string connstring = @"Server=SQL.NEIT.EDU,4500;Database=SE255_NRicci;User Id=SE255_NRicci;Password = 001405200;";
+    public Int32 Person_ID = 0;
+    // public const string connstring = @"Server=SQL.NEIT.EDU,4500;Database=SE255_NRicci;User Id=SE255_NRicci;Password = 001405200;";
 
 
     // Create public variables to use as the front-end for their private counterparts above
@@ -36,7 +36,14 @@ public class Person
         get { return firstname; }   // Accessor
         set    // Mutator
         {
-            firstname = value;
+            if (ValidationLibrary.IsItFilledIn(value, 1) == false)
+            {
+                feedback += "ERROR: First Name cannot be left blank.\n";
+            }
+            else
+            {
+                firstname = value;
+            }
         }
     }
 
@@ -54,7 +61,14 @@ public class Person
         get { return lastname; }
         set
         {
-            lastname = value;
+            if (ValidationLibrary.IsItFilledIn(value, 1) == false)
+            {
+                feedback += "ERROR: Last Name cannot be left blank.\n";
+            }
+            else
+            {
+                lastname = value;
+            }
         }
     }
 
@@ -81,7 +95,18 @@ public class Person
         get { return state; }
         set
         {
-            state = value;
+            if (ValidationLibrary.IsItFilledIn(value, 2) == false)
+            {
+                feedback += "ERROR: State must be filled using abbreviation.\n";
+            }
+            else if (ValidationLibrary.IsValidLength(value, 2) == false)
+            {
+                feedback += "ERROR: State must use 2-letter abbreviation.\n";
+            }
+            else
+            {
+                state = value;
+            }
         }
     }
 
@@ -90,14 +115,28 @@ public class Person
         get { return zipcode; }
         set
         {
-            zipcode = value;
+            if (ValidationLibrary.IsItFilledIn(value, 5) == false)
+            {
+                feedback += "ERROR: Please fill in a 5-digit Zip Code.\n";
+            }
+            else if (ValidationLibrary.IsValidLength(value, 5) == false)
+            {
+                feedback += "ERROR: Zip Code must be exactly 5 digits.\n";
+            }
+            else
+            {
+                zipcode = value;
+            }
         }
     }
 
     public DateTime Birthday
     {
         get { return birthday; }
-        set { birthday = value; }
+        set
+        {
+            birthday = value;
+        }
     }
 
     public DateTime Anniversary
@@ -129,11 +168,22 @@ public class Person
         get { return email; }
         set
         {
-            email = value;
+            if (ValidationLibrary.IsItFilledIn(value, 1) == false)
+            {
+                feedback += "ERROR: Please fill in an Email address.\n";
+            }
+            else if (ValidationLibrary.IsValidEmail(value) == false)
+            {
+                feedback += "ERROR: Email not valid.  Try again.";
+            }
+            else
+            {
+                email = value;
+            }
         }
     }
 
-    public bool CardWorthy
+    public string CardWorthy
     {
         get { return cardworthy; }
         set { cardworthy = value; }
@@ -165,7 +215,7 @@ public class Person
     }
 
     // Overloaded Constructor
-    public Person(string firstname, string middlename, string lastname, string street1, string street2, string city, string state, string zipcode, DateTime birthday, DateTime anniversary, string homephone, string workphone, string cellphone, string email, bool cardworthy, string relationship, string notes)
+    public Person(string firstname, string middlename, string lastname, string street1, string street2, string city, string state, string zipcode, DateTime birthday, DateTime anniversary, string homephone, string workphone, string cellphone, string email, string cardworthy, string relationship, string notes)
     {
         this.FirstName = firstname;
         this.MiddleName = middlename;
@@ -186,10 +236,10 @@ public class Person
         this.Notes = notes;
 
         // Start by giving the feedback an empty string
-        // feedback = "";
+        feedback = "";
     }
 
-    /*
+    
     public string AddPerson()
     {
         string strFeedback = "";    // User feedback
@@ -204,14 +254,14 @@ public class Person
         comm.Connection = conn;
         comm.CommandText = "INSERT INTO WebPeople (FirstName, MiddleName, LastName, Street1, Street2, City, State, ZipCode, Birthday, Anniversary, HomePhone, WorkPhone, CellPhone, Email, CardWorthy, Relationship, Notes) VALUES (@FirstName, @MiddleName, @LastName, @Street1, @Street2, @City, @State, @ZipCode, @Birthday, @Anniversary, @HomePhone, @WorkPhone, @CellPhone, @Email, @CardWorthy, @Relationship, @Notes)";
 
-        comm.Parameters.AddWithValue("@FName", FName);
+        comm.Parameters.AddWithValue("@FirstName", FirstName);
         comm.Parameters.AddWithValue("@MiddleName", MiddleName);
         comm.Parameters.AddWithValue("@LastName", LastName);
         comm.Parameters.AddWithValue("@Street1", Street1);
         comm.Parameters.AddWithValue("@Street2", Street2);
         comm.Parameters.AddWithValue("@City", City);
         comm.Parameters.AddWithValue("@State", State);
-        comm.Parameters.AddWithValue("(@ZipCode", ZipCode);
+        comm.Parameters.AddWithValue("@ZipCode", ZipCode);
         comm.Parameters.AddWithValue("@Birthday", Birthday);
         comm.Parameters.AddWithValue("@Anniversary", Anniversary);
         comm.Parameters.AddWithValue("@HomePhone", HomePhone);
@@ -241,7 +291,7 @@ public class Person
         return strFeedback;     // Return User feedback
     }
 
-    
+    /*
     public DataSet SearchContacts(String FirstName, String LastName)
     {
         //Create a dataset to return filled

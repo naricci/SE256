@@ -38,7 +38,7 @@ public class ValidationLibrary
     }
 
 
-    // Receives a string and we can let user know if it has a semi-valid email format
+    /* Receives a string and we can let user know if it has a semi-valid email format
     public static bool IsValidEmail(string strEmail)
     {
         // assume true, but look for bad stuff to make it false
@@ -63,6 +63,29 @@ public class ValidationLibrary
         else if (periodLocation + 2 > (strEmail.Length))
         {
             result = false;
+        }
+
+        return result;
+    } */
+
+
+    // Receives a string and we can let user know if it has a valid email format
+    public static bool IsValidEmail(string strEmail)
+    {
+        bool result = false;
+
+        if (strEmail.Contains('@') && strEmail.Contains('.'))
+        {
+            string[] seperate = strEmail.Split('@', '.');
+
+            string strUname = seperate[0];
+            string strDomain = seperate[1];
+            string strSuffix = seperate[2];
+
+            if (strUname.Length > 3 & strDomain.Length > 1 & strSuffix.Length > 1)
+            {
+                result = true;
+            }
         }
 
         return result;

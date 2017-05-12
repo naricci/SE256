@@ -9,6 +9,13 @@ public partial class AboutUs : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Session["LoggedIn"] != null && Session["LoggedIn"].ToString() == "TRUE")
+        {
+            //do nothing...they are good
+        }
+        else
+        {
+            Response.Redirect("/Controls/Default.aspx");
+        }
     }
 }

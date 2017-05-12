@@ -2,37 +2,47 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="cphMain" Runat="Server">
     <div class="row">
-    <form class="col s12">
+    <div class="col s12">
       <div class="row">
         <div class="input-field col s4">
 
-            <asp:Label ID="lblFirstName" runat="server" Text="First Name"></asp:Label>
+            <asp:Label ID="lblFirstName" runat="server" Text="First Name" MaxLength="20"></asp:Label>
             <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvFirstName"
+                runat="server"
+                ControlToValidate="txtFirstName"
+                ErrorMessage="You must enter a First Name..."
+                Display="Dynamic">* You must enter a First Name...</asp:RequiredFieldValidator>
 
         </div>
         <div class="input-field col s4">
 
-            <asp:Label ID="lblMiddleName" runat="server" Text="Middle Name"></asp:Label>
+            <asp:Label ID="lblMiddleName" runat="server" Text="Middle Name" MaxLength="20"></asp:Label>
             <asp:TextBox ID="txtMiddleName" runat="server"></asp:TextBox>
 
         </div>
         <div class="input-field col s4">
 
-            <asp:Label ID="lblLastName" runat="server" Text="Last Name"></asp:Label>
+            <asp:Label ID="lblLastName" runat="server" Text="Last Name" MaxLength="30"></asp:Label>
             <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvLastName"
+                runat="server"
+                ControlToValidate="txtLastName"
+                ErrorMessage="You must enter a Last Name..."
+                Display="Dynamic">* You must enter a Last Name...</asp:RequiredFieldValidator>
 
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
           
-            <asp:Label ID="lblStreet1" runat="server" Text="Street 1"></asp:Label>
+            <asp:Label ID="lblStreet1" runat="server" Text="Street 1" MaxLength="50"></asp:Label>
             <asp:TextBox ID="txtStreet1" runat="server"></asp:TextBox>
           
         </div>
         <div class="input-field col s6">
           
-            <asp:Label ID="lblStreet2" runat="server" Text="Street 2"></asp:Label>
+            <asp:Label ID="lblStreet2" runat="server" Text="Street 2" MaxLength="50"></asp:Label>
             <asp:TextBox ID="txtStreet2" runat="server"></asp:TextBox>
           
         </div>
@@ -40,30 +50,32 @@
       <div class="row">
         <div class="input-field col s4">
 
-            <asp:Label ID="lblCity" runat="server" Text="City"></asp:Label>
+            <asp:Label ID="lblCity" runat="server" Text="City" MaxLength="25"></asp:Label>
             <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
 
         </div>
-        <div class="input-field col s4 offset-s1">
+        <div class="input-field col s4">
 
-            <asp:Label ID="lblState" runat="server" Text="State"></asp:Label>
-            <asp:DropDownList ID="ddlState" runat="server" CssClass="browser-default">
-                <asp:ListItem>Choose a State...</asp:ListItem>
-                <asp:ListItem>CT</asp:ListItem>
-                <asp:ListItem>MA</asp:ListItem>
-                <asp:ListItem>ME</asp:ListItem>
-                <asp:ListItem>NH</asp:ListItem>
-                <asp:ListItem>NJ</asp:ListItem>
-                <asp:ListItem>NY</asp:ListItem>
-                <asp:ListItem>RI</asp:ListItem>
-                <asp:ListItem>VT</asp:ListItem>
-            </asp:DropDownList>
-
+            <asp:Label ID="lblState" runat="server" Text="State" MaxLength="2"></asp:Label>
+            <asp:TextBox ID="txtState" runat="server"></asp:TextBox>
+            
+        
         </div>
-        <div class="input-field col s2 offset-s1">
+        <div class="input-field col s4">
 
-            <asp:Label ID="lblZipCode" runat="server" Text="Zip Code"></asp:Label>
+            <asp:Label ID="lblZipCode" runat="server" Text="Zip Code" MaxLength="5"></asp:Label>
             <asp:TextBox ID="txtZipCode" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvZipCode"
+                runat="server"
+                ControlToValidate="txtZipCode"
+                ErrorMessage="You must enter a Zip Code..."
+                Display="Dynamic">* You must enter a Zip Code...</asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="revZipCode"
+                runat="server" 
+                ControlToValidate="txtZipCode"
+                ValidationExpression="\d{5}" 
+                Display="Dynamic"
+                ErrorMessage="Must be a 5-digit U.S. Zip Code.">* Must be a 5-digit U.S. Zip Code.</asp:RegularExpressionValidator>
 
         </div>
       </div>
@@ -71,32 +83,32 @@
           <div class="input-field col s6">
 
               <asp:Label ID="lblBirthday" runat="server" Text="Birthday"></asp:Label>
-              <asp:Calendar ID="calBirthday" runat="server"></asp:Calendar>
+              <asp:Calendar ID="calBirthday" runat="server" ShowGridLines="True"></asp:Calendar>
 
           </div>
           <div class="input-field col s6">
 
               <asp:Label ID="lblAnniversary" runat="server" Text="Anniversary"></asp:Label>
-              <asp:Calendar ID="calAnniversary" runat="server"></asp:Calendar>
+              <asp:Calendar ID="calAnniversary" runat="server" ShowGridLines="True"></asp:Calendar>
 
           </div>
       </div>
       <div class="row">
           <div class="input-field col s4">
 
-              <asp:Label ID="lblHomePhone" runat="server" Text="Home Phone"></asp:Label>
+              <asp:Label ID="lblHomePhone" runat="server" Text="Home Phone" MaxLength="10"></asp:Label>
               <asp:TextBox ID="txtHomePhone" runat="server"></asp:TextBox>
 
           </div>
           <div class="input-field col s4">
 
-              <asp:Label ID="lblWorkPhone" runat="server" Text="WorkPhone"></asp:Label>
+              <asp:Label ID="lblWorkPhone" runat="server" Text="WorkPhone" MaxLength="10"></asp:Label>
               <asp:TextBox ID="txtWorkPhone" runat="server"></asp:TextBox>
 
           </div>
           <div class="input-field col s4">
 
-              <asp:Label ID="lblCellPhone" runat="server" Text="Cell Phone"></asp:Label>
+              <asp:Label ID="lblCellPhone" runat="server" Text="Cell Phone" MaxLength="10"></asp:Label>
               <asp:TextBox ID="txtCellPhone" runat="server"></asp:TextBox>
 
           </div>
@@ -104,15 +116,21 @@
       <div class="row">
           <div class="input-field col s4">
 
-              <asp:Label ID="lblEmail" runat="server" Text="Email"></asp:Label>
+              <asp:Label ID="lblEmail" runat="server" Text="Email" MaxLength="50"></asp:Label>
               <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+              <asp:RequiredFieldValidator ID="rfvEmail" 
+                  runat="server" ControlToValidate="txtEmail"
+                  ErrorMessage="Email Address is not filled in..."/><br />
+              <asp:RegularExpressionValidator ID="revEmail" 
+                  runat="server" ErrorMessage="Email Address is not in a proper format." 
+                  ControlToValidate="txtEmail" 
+                  ValidationExpression="[\w\.-]+(\+[\w-]*)?@([\w-]+\.)+[\w-]+">
+              </asp:RegularExpressionValidator>
 
           </div>
           <div class="input-field col s4">
 
-              <center>
-                  <asp:CheckBox ID="chkCardWorthy" runat="server" Text="Card Worthy?" />
-              </center>
+              <asp:CheckBox ID="chkCardWorthy" runat="server" Text="Card Worthy?" />
 
           </div>
           <div class="input-field col s4">
@@ -133,7 +151,7 @@
       <div class="row">
           <div class="input-field col s12">
           
-              <asp:Label ID="lblNotes" runat="server" Text="Notes"></asp:Label>
+              <asp:Label ID="lblNotes" runat="server" Text="Notes" MaxLength="100"></asp:Label>
               <asp:TextBox ID="txtNotes" runat="server" TextMode="MultiLine" Height="100px"></asp:TextBox>
           
           </div>
@@ -148,8 +166,10 @@
           </div>
           <div class="input-field col s6">
 
-              <asp:Button ID="btnSubmit" runat="server" Text="Submit" class="btn waves-effect waves-light grey darken-4" />
-              <asp:Button ID="btnClear" runat="server" Text="Clear" class="btn waves-effect waves-light grey darken-4" />
+              <asp:Button ID="btnSubmit" runat="server" Text="Submit" class="btn waves-effect waves-light grey darken-4" OnClick="btnSubmit_Click" />&nbsp;
+              <asp:ValidationSummary ID="vsMainAdd" runat="server" ShowMessageBox="True" />
+              <asp:Button ID="btnClear" runat="server" Text="Clear" class="btn waves-effect waves-light grey darken-4" OnClick="btnClear_Click" CausesValidation="false" />&nbsp;
+              <asp:Button ID="btnLogOut" runat="server"  Text="Log Out" OnClick="btnLogOut_Click" />
 
           </div>
       </div>
@@ -160,7 +180,7 @@
 
           </div>
       </div>
-    </form>
+    </div>
   </div>
 </asp:Content>
 
