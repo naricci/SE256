@@ -1,0 +1,24 @@
+﻿html {
+    /*height: 100vh;*/
+}
+
+body {
+    /*height: 100vh;*/
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    height: 150vh;
+    overflow: hidden;
+}
+.content {
+    float: right;
+    height: 150vh;
+    flex: 1;
+}
+
+.sidebar {
+    /*float: left;*/
+    height: 150vh;
+}

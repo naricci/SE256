@@ -1,0 +1,143 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Lab 4: Validation</title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+
+        /* Sticky Footer */
+        .page-flexbox-wrapper {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        main {
+            flex: 1 0 auto;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        /* Main Page Layout */
+        .page-layout {
+            padding-bottom: 0;
+        }
+        row page-layout {
+	        margin-bottom: 0;
+	        padding-bottom: 0;
+        }
+        /* Flexbox */
+        .row {
+          display: flex; /* equal height of the children */
+        }
+        .col {
+          /*flex: 1; additionally, equal width */
+          padding: 1em;
+          /* border: solid; */
+          }
+        /* Footer */
+        footer {
+            padding-top: 0;
+            clear: both;
+            float: left;
+        }
+    </style>
+    </asp:ContentPlaceHolder>
+</head>
+<body class="grey lighten-3">
+    <form id="form1" runat="server">
+    <div class="page-flexbox-wrapper">
+        <!-- CPH Navbar Placeholder -->
+        <asp:ContentPlaceHolder id="cphNav" runat="server">
+            <header>
+            <!-- Navbar goes here -->
+                <nav class="grey darken-4">
+                    <div class="nav-wrapper">
+                        <a href="../Default.aspx" class="brand-logo" style="padding-left: 10px;">Boston Bruins Fan Site</a>
+                        <ul id="nav-mobile" class="right hide-on-med-and-down">
+                            <li><a href="/Default.aspx" class="waves-effect waves-light btn">Home <i class="material-icons">home</i></a></li>
+                            <li><a href="/AboutUs.aspx" class="waves-effect waves-light btn">About Us</a></li>
+                            <li><a href="/ContactUs.aspx" class="waves-effect waves-light btn">Contact Us <i class="material-icons">phone</i></a></li>
+                            <li><a href="/Controls/ContentMgr.aspx" class="waves-effect waves-light btn">Content Manager</a></li>
+                            <li><a href="/PersonSearch.aspx" class="waves-effect waves-light btn">Search <i class="material-icons">search</i></a></li>
+                            <%--<asp:Button ID="btnLogOut" runat="server" OnClick="btnLogOut_Click" Text="Log Out" CausesValidation="false" Class="waves-effect waves-light btn grey lighten-4" />--%>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+        </asp:ContentPlaceHolder>
+
+        <!-- Page Layout -->
+        <main>
+            <div class="row page-layout">
+
+                <!-- Side Panel Content -->
+                <div class="col s3 grey darken-2">
+                    <div class="container">
+                        <!-- CPH Side PlaceHolder -->
+                        <asp:ContentPlaceHolder id="cphSide" runat="server">
+                            <br />
+                            <p>Welcome to the unofficial fan site of the Boston Bruins!</p>
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+            
+                <!-- Main Page Content  -->
+                <div class="col s9 white" style="float: inherit;">
+                    <div class="container">
+                        <!--CPH Main Placeholder -->
+                        <asp:ContentPlaceHolder id="cphMain" runat="server">
+                            <p>The official unofficial fan site of the Boston Bruins.</p>
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+
+            </div><!-- /row -->
+        </main><!--/ Page Layout -->
+        
+        <!-- CPH Footer Placeholder -->
+        <asp:ContentPlaceHolder id="cphFooter" runat="server">
+            <!-- Footer -->
+            <footer class="page-footer grey darken-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col l6 s12">
+                            <h5 class="white-text">Footer Content</h5>
+                            <p class="grey-text text-lighten-4">
+                                The official unofficial fan site of the Boston Bruins.</p>
+                        </div>
+                        <div class="col l4 offset-l2 s12">
+                            <h5 class="white-text">Resources Used</h5>
+                            <ul>
+                                <li><a class="grey-text text-lighten-3" href="https://docs.microsoft.com/en-us/aspnet/web-forms/">ASP.NET Web Forms</a></li>
+                                <li><a class="grey-text text-lighten-3" href="https://docs.microsoft.com/en-us/dotnet/articles/csharp/programming-guide/index">C# Programming Guide</a></li>
+                                <li><a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize CSS</a></li>
+                                <li><a class="grey-text text-lighten-3" href="http://stackoverflow.com">Stack Overflow</a></li>
+                                <li><a class="grey-text text-lighten-3" href="https://msdn.microsoft.com/library/dd831853(v=vs.140).aspx">Visual Studio 2015</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-copyright black">
+                    <div class="container">
+                        <p style="float: left;">
+                            © 2017 Nicholas Ricci</p>
+                        <p style="float: right;">
+                            This site was built using...<a class="pink-text text-lighten-4 right" href="http://materializecss.com">Materialize CSS</a></p>
+                    </div>
+                </div>
+                <!--/ container -->
+            </footer>
+        </asp:ContentPlaceHolder>
+    
+    </div>
+    </form>
+</body>
+</html>
