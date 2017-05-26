@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Controls_Default" %>
+﻿<%@ Page Title=" Log In" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Controls_Default" %>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="cphMain" Runat="Server">
     <br />
@@ -10,7 +10,8 @@
             <div class="row">
                 <div class="offset-s4 col s4 offset-s4">
                     <!-- Page Title -->
-                    <h5>Welcome to House of Pizza.  Please log in below to place an order.</h5>
+                    <h5>Welcome to House of Pizza!</h5>  
+                    <p>Please log in below to place an order.</p>
                     <br /><br />
                 </div>
             </div>

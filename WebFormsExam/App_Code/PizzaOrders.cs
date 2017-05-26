@@ -155,6 +155,7 @@ public class PizzaOrders
     public PizzaOrders()
     {
         feedback = "";
+        totalcost = 0;
     }
 
 
@@ -335,7 +336,7 @@ public class PizzaOrders
         Int32 intRecords = 0;
 
         //Create SQL command string
-        string strSQL = "UPDATE WebPeople SET PizzaSize = @PizzaSize, Toppings = @Toppings, FirstName = @FirstName, LastName = @LastName, Street1 = @Street1, Street2 = @Street2, City = @City, State = @State, ZipCode = @ZipCode, Phone = @Phone, Email = @Email, TotalCost = @TotalCost WHERE Order_ID = @Order_ID;";
+        string strSQL = "UPDATE PizzaOrders SET PizzaSize = @PizzaSize, Toppings = @Toppings, FirstName = @FirstName, LastName = @LastName, Street1 = @Street1, Street2 = @Street2, City = @City, State = @State, ZipCode = @ZipCode, Phone = @Phone, Email = @Email, TotalCost = @TotalCost WHERE Order_ID = @Order_ID;";
 
         // Create a connection to DB
         SqlConnection conn = new SqlConnection();

@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.Data.SqlClient;
 
 public partial class OrderForm : System.Web.UI.Page
 {
     double pizzaPrice, toppingPrice;
-    string pizzaSize, pizzaTopping;
+    string pizzaTopping;
+    //string pizzaSize;
+    RadioButton pizzaSize = new RadioButton();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -22,11 +24,6 @@ public partial class OrderForm : System.Web.UI.Page
         {
             Response.Redirect("Default.aspx");
         }
-        
-        // Default Drop Down Lists to specific city/state
-        ddlCity.SelectedIndex = 2;
-        ddlState.SelectedIndex = 3;
-        rbSmall.Checked = true;
 
         string strOrd_ID = "";
         int intOrd_ID = 0;
@@ -34,6 +31,9 @@ public partial class OrderForm : System.Web.UI.Page
         //Does Per_ID Exist?
         if ((!IsPostBack) && Request.QueryString["Ord_ID"] != null)
         {
+            // if this is an update, hide submit button
+            btnSubmit.Visible = false;
+
             //If so...Gather Person's ID and Fill Form
             strOrd_ID = Request.QueryString["Ord_ID"].ToString();
             lblOrder_ID.Text = strOrd_ID;
@@ -46,8 +46,68 @@ public partial class OrderForm : System.Web.UI.Page
             
             while (dr.Read())
             {
-                pizzaSize = dr["PizzaSize"].ToString();
+                string pSize = dr["PizzaSize"].ToString();
+                if (pSize == "Small")
+                {
+                    rbSmall.Checked = true;
+                }
+                else if (pSize == "Medium")
+                {
+                    rbMedium.Checked = true;
+                }
+                else if (pSize == "Large")
+                {
+                    rbLarge.Checked = true;
+                }
+                pizzaSize.Text = dr["PizzaSize"].ToString();
+
+                string pTopping = dr["Toppings"].ToString();
+                if (pTopping.Contains("Pepperoni"))
+                {
+                    chkPepperoni.Checked = true;
+                }
+                if (pTopping.Contains("Sausage"))
+                {
+                    chkSausage.Checked = true;
+                }
+                if (pTopping.Contains("Meatball"))
+                {
+                    chkMeatball.Checked = true;
+                }
+                if (pTopping.Contains("Ham"))
+                {
+                    chkHam.Checked = true;
+                }
+                if (pTopping.Contains("Peppers"))
+                {
+                    chkPeppers.Checked = true;
+                }
+                if (pTopping.Contains("Onions"))
+                {
+                    chkOnions.Checked = true;
+                }
+                if (pTopping.Contains("Olives"))
+                {
+                    chkOlives.Checked = true;
+                }
+                if (pTopping.Contains("Spinach"))
+                {
+                    chkSpinach.Checked = true;
+                }
+                if (pTopping.Contains("Pineapple"))
+                {
+                    chkPineapple.Checked = true;
+                }
+                if (pTopping.Contains("BBQ Sauce"))
+                {
+                    chkBBQSauce.Checked = true;
+                }
+                if (pTopping.Contains("Extra Cheese"))
+                {
+                    chkExtraCheese.Checked = true;
+                }
                 pizzaTopping = dr["Toppings"].ToString();
+
                 txtFirstName.Text = dr["FirstName"].ToString();
                 txtLastName.Text = dr["LastName"].ToString();
                 txtStreet1.Text = dr["Street1"].ToString();
@@ -57,9 +117,8 @@ public partial class OrderForm : System.Web.UI.Page
                 txtZipCode.Text = dr["ZipCode"].ToString();
                 txtPhone.Text = dr["Phone"].ToString();
                 txtEmail.Text = dr["Email"].ToString();
-                txtTotalCost.Text = dr["TotalCost"].ToString();
-            }
-            
+                lblOrder.Text = dr["TotalCost"].ToString();
+            }         
         }
         else
         {
@@ -70,54 +129,47 @@ public partial class OrderForm : System.Web.UI.Page
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
+        // Clear Order Total Label
+        lblOrder.Text = "";
+
         bool isValid = true;
 
         // Check if First Name is filled in
         if (!ValidationLibrary.IsItFilledIn(txtFirstName.Text))
         {
             isValid = false;
-            lbxOrder.Items.Add("Please enter a First Name.\n");
         }
 
         // Check if Last Name is filled in
         if (!ValidationLibrary.IsItFilledIn(txtLastName.Text))
         {
             isValid = false;
-            lbxOrder.Items.Add("Please enter a Last Name.\n");
         }
 
         // Check if Email Address is Valid
         if (!ValidationLibrary.IsValidEmail(txtEmail.Text))
         {
             isValid = false;
-            lbxOrder.Items.Add("Please enter a valid Email Address.\n");
         }
 
         // Check if Phone Number is Valid
         if (!ValidationLibrary.IsValidPhoneNumber(txtPhone.Text))
         {
             isValid = false;
-            lbxOrder.Items.Add("Please enter a valid Phone Number.\n");
         }
 
-        if (isValid) //Adds Everything together
+        if (isValid == true && Page.IsValid)
         {
-            // Clear Order Total Label
-            lblOrder.Text = "";
-            txtTotalCost.Text = "";
-
-            //rblSize.SelectedValue = pizzaSize;
-
             PizzaOrders temp = new PizzaOrders();
 
-            temp.PizzaSize = pizzaSize;
+            temp.PizzaSize = pizzaSize.Text;
             temp.Toppings = pizzaTopping;
             temp.FirstName = txtFirstName.Text;
             temp.LastName = txtLastName.Text;
             temp.Street1 = txtStreet1.Text;
             temp.Street2 = txtStreet2.Text;
-            temp.City = ddlCity.SelectedValue;
-            temp.State = ddlState.SelectedValue;
+            temp.City = ddlCity.SelectedItem.ToString();
+            temp.State = ddlState.SelectedItem.ToString();
             temp.ZipCode = txtZipCode.Text;
             temp.Phone = txtPhone.Text;
             temp.Email = txtEmail.Text;
@@ -133,39 +185,123 @@ public partial class OrderForm : System.Web.UI.Page
                 // FillLabel(temp);
                 lblFeedback.Text = temp.AddOrder();
 
-                txtTotalCost.Text += (pizzaPrice + toppingPrice).ToString("c");
-
                 // Add Total Price to Order Label
-                lblOrder.Text += (pizzaPrice + toppingPrice).ToString("c");    // was ToString("c");
+                lblOrder.Text += (pizzaPrice + toppingPrice).ToString("c");
 
-                // Add Order Data to ListBox
                 // Display Order info in ListBox
                 lbxOrder.Items.Add("Your Order:");
-                lbxOrder.Items.Add(pizzaSize + " Pizza with" + pizzaTopping);
+                lbxOrder.Items.Add(pizzaSize.Text + " Pizza with" + pizzaTopping);
                 lbxOrder.Items.Add("Delivery Info:");
                 lbxOrder.Items.Add(txtFirstName.Text + " " + txtLastName.Text);
                 lbxOrder.Items.Add(txtStreet1.Text + " " + txtStreet2.Text);
-                lbxOrder.Items.Add(ddlCity.Text + ", " + ddlState.Text + ", " + txtZipCode.Text);
+                lbxOrder.Items.Add(ddlCity.SelectedItem.Text + ", " + ddlState.SelectedItem.Text + ", " + txtZipCode.Text);
             }
         }
     }
 
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
+        lblOrder.Text = "";
+        pizzaPrice = 0;
+        toppingPrice = 0;
+        pizzaTopping = "";
+
         PizzaOrders temp = new PizzaOrders();
-        temp.PizzaSize = pizzaSize;
+
+        if (rbSmall.Checked == true)
+        {
+            pizzaSize.Text = "Small";
+            pizzaPrice = 7;
+        }
+        else if (rbMedium.Checked == true)
+        {
+            pizzaSize.Text = "Medium";
+            pizzaPrice = 10;
+        }
+        else
+        {
+            pizzaSize.Text = "Large";
+            pizzaPrice = 12;
+        }
+
+        if (chkPepperoni.Checked)
+        {
+            pizzaTopping += "Pepperoni";
+            toppingPrice += .50;
+        }
+        if (chkSausage.Checked)
+        {
+            pizzaTopping += " Sausage";
+            toppingPrice += .50;
+        }
+        if (chkMeatball.Checked)
+        {
+            pizzaTopping += " Meatball";
+            toppingPrice += .50;
+        }
+        if (chkHam.Checked)
+        {
+            pizzaTopping += " Ham";
+            toppingPrice += .50;
+        }
+        if (chkPeppers.Checked)
+        {
+            pizzaTopping += " Peppers";
+            toppingPrice += .50;
+        }
+        if (chkOnions.Checked)
+        {
+            pizzaTopping += " Onions";
+            toppingPrice += .50;
+        }
+        if (chkOlives.Checked)
+        {
+            pizzaTopping += " Olives";
+            toppingPrice += .50;
+        }
+        if (chkSpinach.Checked)
+        {
+            pizzaTopping += " Spinach";
+            toppingPrice += .50;
+        }
+        if (chkPineapple.Checked)
+        {
+            pizzaTopping += " Pineapple";
+            toppingPrice += .50;
+        }
+        if (chkBBQSauce.Checked)
+        {
+            pizzaTopping += " BBQ Sauce";
+            toppingPrice += .50;
+        }
+        if (chkExtraCheese.Checked)
+        {
+            pizzaTopping += " Extra Cheese";
+            toppingPrice += .50;
+        }
+        temp.PizzaSize = pizzaSize.Text;
         temp.Toppings = pizzaTopping;
         temp.FirstName = txtFirstName.Text;
         temp.LastName = txtLastName.Text;
         temp.Street1 = txtStreet1.Text;
         temp.Street2 = txtStreet2.Text;
-        temp.City = ddlCity.SelectedValue;
-        temp.State = ddlState.Text;
+        temp.City = ddlCity.SelectedItem.ToString();
+        temp.State = ddlState.SelectedItem.ToString();
         temp.ZipCode = txtZipCode.Text;
         temp.Phone = txtPhone.Text;
         temp.Email = txtEmail.Text;
-        temp.TotalCost = double.Parse(txtTotalCost.Text);
+        temp.TotalCost = pizzaPrice + toppingPrice;
 
+        // Add Total Price to Order Label
+        lblOrder.Text += (pizzaPrice + toppingPrice).ToString("c");
+
+        // Display Order info in ListBox
+        lbxOrder.Items.Add("Your Order:");
+        lbxOrder.Items.Add(pizzaSize.Text + " Pizza with" + pizzaTopping);
+        lbxOrder.Items.Add("Delivery Info:");
+        lbxOrder.Items.Add(txtFirstName.Text + " " + txtLastName.Text);
+        lbxOrder.Items.Add(txtStreet1.Text + " " + txtStreet2.Text);
+        lbxOrder.Items.Add(ddlCity.SelectedItem.Text + ", " + ddlState.SelectedItem.Text + ", " + txtZipCode.Text);
 
         // store ID of the person being updated
         temp.Order_ID = Convert.ToInt32(lblOrder_ID.Text);
@@ -187,8 +323,10 @@ public partial class OrderForm : System.Web.UI.Page
         // Reset variable values
         pizzaPrice = 0;
         toppingPrice = 0;
+        //pizzaSize = "";
         pizzaTopping = "";
 
+        // Reset Radio Buttons to first btn
         rbSmall.Checked = true;
 
         // Clear Checkboxes
@@ -215,10 +353,8 @@ public partial class OrderForm : System.Web.UI.Page
         lblFeedback.Text = "";
         lblOrder.Text = "";
         lblOrder_ID.Text = "";
-        lblTotalCost.Text = "";
 
         // Reset TextBoxes
-        txtTotalCost.Text = "0";
         txtFirstName.Text = "";
         txtLastName.Text = "";
         txtStreet1.Text = "";
@@ -306,18 +442,18 @@ public partial class OrderForm : System.Web.UI.Page
     protected void rbSmall_CheckedChanged(object sender, EventArgs e)
     {
         pizzaPrice = 7;
-        pizzaSize = "Small";
+        pizzaSize.Text = "Small";
     }
 
     protected void rbMedium_CheckedChanged(object sender, EventArgs e)
     {
         pizzaPrice = 10;
-        pizzaSize = "Medium";
+        pizzaSize.Text = "Medium";
     }
 
     protected void rbLarge_CheckedChanged(object sender, EventArgs e)
     {
         pizzaPrice = 12;
-        pizzaSize = "Large";
+        pizzaSize.Text = "Large";
     }
 }

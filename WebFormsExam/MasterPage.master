@@ -2,78 +2,78 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en-US">
 <head runat="server">
     <title>Pizza Ordering System</title>
     <asp:ContentPlaceHolder id="head" runat="server">
         <!--Import Google Icon Font-->
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection" />
         <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!--Custom CSS-->
-        <link type="text/css" rel="stylesheet" href="../css/main.css" />
+        <link type="text/css" rel="stylesheet" href="/css/main.css" />
     </asp:ContentPlaceHolder>
 </head>
 <body class="grey lighten-3">
     <form id="form1" runat="server">
-    <div class="page-flexbox-wrapper">
+        <div class="page-flexbox-wrapper">
 
-        <!-- CPH Navbar Placeholder -->
-        <asp:ContentPlaceHolder id="cphNav" runat="server">
-            <header>
-                <!-- Navbar goes here -->
-                <nav class="red darken-4">
-                    <div class="nav-wrapper">
-                        <a href="../Default.aspx" class="brand-logo" style="padding-left: 10px;">HOUSE OF PIZZA</a>
-                        <ul id="nav-mobile" class="right hide-on-med-and-down">
-                            <li><a href="/Default.aspx">Home</a></li>
-                            <li><a href="/Controls/OrderForm.aspx">Order Form</a></li>
-                            <li><a href="/OrderSearch.aspx">Order Search</a></li>
-                        </ul>
+            <!-- CPH Navbar Placeholder -->
+            <asp:ContentPlaceHolder id="cphNav" runat="server">
+                <header>
+                    <!-- Navbar goes here -->
+                    <nav class="red darken-4">
+                        <div class="nav-wrapper">
+                            <a href="../Default.aspx" class="brand-logo">HOUSE OF PIZZA</a>
+                            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                                <li><a href="/Default.aspx">Home</a></li>
+                                <li><a href="/Controls/OrderForm.aspx">Order Form</a></li>
+                                <li><a href="/OrderSearch.aspx">Order Search</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </header>
+            </asp:ContentPlaceHolder>
+
+            <!-- Main Page Layout -->
+            <main class="main">
+                <div class="row page-layout">
+
+                    <!-- Side Panel Content -->
+                    <div class="orange darken-2 sidebar col s3">
+                        <aside class="container">
+                            <!-- CPH Side PlaceHolder -->
+                            <asp:ContentPlaceHolder id="cphSide" runat="server">
+                                <br />
+                                <h5>Welcome to House of Pizza!</h5>
+                                <br />
+                                <img src="/img/pizza.gif" />
+                                <br />
+                                <p>Address: 100 Main Street
+                                            East Greenwich, RI, 02818
+                                </p>
+                                <p>Phone: (401) 699-3928</p>
+                                <p>Email: houseofpizza@gmail.com</p>
+                            </asp:ContentPlaceHolder>
+                        </aside>
                     </div>
-                </nav>
-            </header>
-        </asp:ContentPlaceHolder>
-
-        <!-- Main Page Layout -->
-        <main class="main">
-            <div class="row page-layout">
-
-                <!-- Side Panel Content -->
-                <div class="orange darken-2 sidebar col s3">
-                    <aside class="container">
-                        <!-- CPH Side PlaceHolder -->
-                        <asp:ContentPlaceHolder id="cphSide" runat="server">
-                            <br />
-                            <h5>Welcome to House of Pizza!</h5>
-                            <br />
-                            <img src="/img/pizza.gif" />
-                            <br />
-                            <p>Address: 100 Main Street
-                                        East Greenwich, RI, 02818
-                            </p>
-                            <p>Phone: (401) 699-3928</p>
-                            <p>Email: houseofpizza@gmail.com</p>
-                        </asp:ContentPlaceHolder>
-                    </aside>
-                </div>
             
-                <!-- Main Page Content  -->
-                <div class="white content col s9">
-                    <section class="container">
-                        <!--CPH Main Placeholder -->
-                        <asp:ContentPlaceHolder id="cphMain" runat="server">
+                    <!-- Main Page Content  -->
+                    <div class="white content col s9">
+                        <section class="container">
+                            <!--CPH Main Placeholder -->
+                            <asp:ContentPlaceHolder id="cphMain" runat="server">
                             
-                        </asp:ContentPlaceHolder>
-                    </section>
-                </div>
+                            </asp:ContentPlaceHolder>
+                        </section>
+                    </div>
 
-            </div><!-- / .row page-layout -->
-        </main><!-- /.main -->
+                </div><!-- / .row page-layout -->
+            </main><!-- /.main -->
         
-    </div><!-- /.page-flexbox-wrapper -->
+        </div><!-- /.page-flexbox-wrapper -->
     </form>
 </body>
 </html>

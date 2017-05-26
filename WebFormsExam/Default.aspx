@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="cphMain" Runat="Server">
+<asp:Content ID="Content4" ContentPlaceHolderID="cphMain" Runat="Server">
     <br />
-    <center>
+    <div class="center-align">
         <h3>WELCOME!</h3>
         <br />
-        <img src="/img/pizza.png" />
-    </center>
+        <img src="/img/pizza.png" alt="Pizza Image"/>
+    </div>
 </asp:Content>
 
